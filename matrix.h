@@ -13,6 +13,7 @@ typedef struct	s_tuple
 }				t_tuple;
 
 t_tuple ft_add_tuple(t_tuple t1, t_tuple t2);
+t_tuple ft_sub_tuple(t_tuple t1, t_tuple t2);
 t_tuple init_tuple(float x, float y, float z, float w);
 
 #endif
