@@ -17,18 +17,21 @@ void set_tuples(t_tuple *tup, float x, float y, float z, float w)
 
 int main()
 {
-  	t_tuple t;
-	float mag;
-	t_tuple norm;
+  	t_tuple a;
+	t_tuple b;
+    float dot;
 
-	t = init_tuple(1, 2, 3, 0);
-    norm = tuple_norm(t);
-	printf("normalized vector of the vector ");
-	tuple_info(t);
-	printf(" is ");
-	tuple_info(norm);
-	mag = tuple_magnitude(norm);
-	printf("magnitude of norm is: ");
-	printf(" = %f\n", mag);
+	a = init_tuple(1, 2, 3, 1);
+	b = init_tuple(2, 3, 4, 0);
+	dot = tuple_dot_product(a, b);
+	if (dot < 0)
+	  {
+		printf("cannot operate dot product on points\n");
+		return (1);
+	  }
+    printf("The dot product of two tuples: ");
+	tuple_info(a);
+	tuple_info(b);
+	printf(" is: %f\n", dot);
 	return (0);
 }

@@ -26,4 +26,6 @@ t_tuple tuple_add(t_tuple t1, t_tuple t2);
 float tuple_magnitude(t_tuple t);
 t_tuple init_tuple(float x, float y, float z, float w);
 
+float tuple_dot_product(t_tuple t1, t_tuple t2);
+
 #endif

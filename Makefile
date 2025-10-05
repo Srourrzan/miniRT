@@ -1,15 +1,17 @@
 # !--Makefile--
 
-CC=cc
-CFLAGS=-Wall -Wextra -Werror
-LDFLAGS+=-lm
-SRCS=main.c						\
-		info.c					\
-		math.c					\
-		math_utils.c			\
-		tuple.c					\
-		tuple_ops_immutable.c	\
-		tuple_ops_mutable.c
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -I. -Imatrix
+LDFLAGS += -lm
+SRCS += main.c								\
+		info.c								\
+		matrix/math.c						\
+		matrix/math_utils.c					\
+		matrix/tuple.c						\
+		matrix/tuple_ops_immutable.c		\
+		matrix/tuple_ops_mutable.c			\
+		matrix/matrix_multiplication.c
 OBJS=$(SRCS:.c=.o)
 TARGET=miniRT
 
@@ -19,7 +21,7 @@ $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 re: fclean all
 
