@@ -2,18 +2,21 @@
 
 CC=cc
 CFLAGS=-Wall -Wextra -Werror
-SRCS=main.c				\
-		info.c			\
-		math.c			\
-		math_utils.c	\
-		tuple.c
+LDFLAGS+=-lm
+SRCS=main.c						\
+		info.c					\
+		math.c					\
+		math_utils.c			\
+		tuple.c					\
+		tuple_ops_immutable.c	\
+		tuple_ops_mutable.c
 OBJS=$(SRCS:.c=.o)
 TARGET=miniRT
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

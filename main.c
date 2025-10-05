@@ -17,13 +17,18 @@ void set_tuples(t_tuple *tup, float x, float y, float z, float w)
 
 int main()
 {
-  	t_tuple p;
-  	t_tuple v;
+  	t_tuple t;
+	float mag;
+	t_tuple norm;
 
-	p = init_tuple(0.0, 0.0, 0.0, 0.0);
-	v = init_tuple(1, -2, 3, 0.0);
-	tuple_info(p);
-	tuple_info(v);
-	ft_sub_tuple(p, v);
+	t = init_tuple(1, 2, 3, 0);
+    norm = tuple_norm(t);
+	printf("normalized vector of the vector ");
+	tuple_info(t);
+	printf(" is ");
+	tuple_info(norm);
+	mag = tuple_magnitude(norm);
+	printf("magnitude of norm is: ");
+	printf(" = %f\n", mag);
 	return (0);
 }
