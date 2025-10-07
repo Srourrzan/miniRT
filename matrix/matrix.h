@@ -17,7 +17,7 @@ void tuple_scale_set(t_tuple *t, float sc);
 void tuple_sub_set(t_tuple *t1, t_tuple t2);
 void tuple_add_set(t_tuple *t1, t_tuple t2);
 
-t_tuple tuple_norm(t_tuple t);
+t_tuple tuple_norm(t_tuple t); //normalize a vector
 t_tuple tuple_neg(t_tuple *tup);
 t_tuple tuple_scale(t_tuple t, float sc);
 t_tuple tuple_sub(t_tuple t1, t_tuple t2);
@@ -27,5 +27,6 @@ float tuple_magnitude(t_tuple t);
 t_tuple init_tuple(float x, float y, float z, float w);
 
 float tuple_dot_product(t_tuple t1, t_tuple t2);
+int tuple_cross_product(t_tuple *r_res,t_tuple t1, t_tuple t2);
 
 #endif

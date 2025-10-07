@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "matrix.h"
 #include "info.h"
+#include "matrix.h"
 #include "ext_math.h"
+#include "projectile.h"
 
 void set_tuples(t_tuple *tup, float x, float y, float z, float w)
 {
@@ -17,21 +18,31 @@ void set_tuples(t_tuple *tup, float x, float y, float z, float w)
 
 int main()
 {
-  	t_tuple a;
-	t_tuple b;
-    float dot;
+	t_tuple 	position;
+	t_tuple 	velocity;
+	t_tuple 	grav;
+	t_tuple 	wind;
+	t_prjct 	proj;
+	t_env 		env;
+	int i;
 
-	a = init_tuple(1, 2, 3, 1);
-	b = init_tuple(2, 3, 4, 0);
-	dot = tuple_dot_product(a, b);
-	if (dot < 0)
+	i = 0;
+  	position = init_tuple(0, 1, 0, 1);
+	velocity = init_tuple(1, 1, 0, 0);
+	tuple_scale_set(&velocity, 1);
+	printf("velocity after scaling: ");
+	tuple_info(velocity);
+	grav = init_tuple(0, -0.1, 0, 0);
+	wind = init_tuple(-0.01, 0, 0, 0);
+	proj = init_projectile(position, velocity);
+	env = init_env(grav, wind);
+	while(proj.position.p[1] > 0)
 	  {
-		printf("cannot operate dot product on points\n");
-		return (1);
+		proj = tick(proj, env);
+	 	i++;
 	  }
-    printf("The dot product of two tuples: ");
-	tuple_info(a);
-	tuple_info(b);
-	printf(" is: %f\n", dot);
+	printf("proj position: ");
+	tuple_info(proj.position);
+	printf("number of ticks = %d\n", i);
 	return (0);
 }
