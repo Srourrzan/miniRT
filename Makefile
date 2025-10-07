@@ -6,6 +6,7 @@ CPPFLAGS = -I. -Imatrix
 LDFLAGS += -lm
 SRCS += main.c								\
 		info.c								\
+		color.c								\
 		projectile.c						\
 		matrix/math.c						\
 		matrix/math_utils.c					\
