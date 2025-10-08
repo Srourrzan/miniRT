@@ -2,7 +2,7 @@
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -I. -Imatrix
+CPPFLAGS = -I. -Imatrix -Icolor
 LDFLAGS += -lm
 SRCS += main.c								\
 		info.c								\
