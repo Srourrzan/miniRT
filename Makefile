@@ -6,13 +6,13 @@ CPPFLAGS = -I. -Imatrix -Icolor
 LDFLAGS += -lm
 SRCS += main.c								\
 		info.c								\
-		color.c								\
 		projectile.c						\
+		color/color.c						\
 		matrix/math.c						\
-		matrix/math_utils.c					\
 		matrix/tuple.c						\
-		matrix/tuple_ops_immutable.c		\
+		matrix/math_utils.c					\
 		matrix/tuple_ops_mutable.c			\
+		matrix/tuple_ops_immutable.c		\
 		matrix/matrix_multiplication.c		
 OBJS=$(SRCS:.c=.o)
 TARGET=miniRT
