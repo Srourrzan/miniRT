@@ -8,6 +8,7 @@ SRCS += main.c								\
 		info.c								\
 		projectile.c						\
 		color/color.c						\
+		color/canvas.c						\
 		matrix/math.c						\
 		matrix/tuple.c						\
 		matrix/math_utils.c					\

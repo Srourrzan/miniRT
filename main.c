@@ -3,30 +3,27 @@
 #include <stdlib.h>
 #include <string.h>
 #include "info.h"
-#include "color.h"
-#include "matrix.h"
-#include "ext_math.h"
-#include "projectile.h"
-
-void set_tuples(t_tuple *tup, float x, float y, float z, float w)
-{
- 	tup->p[0] = x;
- 	tup->p[1] = y;
-	tup->p[2] = z;
-	tup->p[3] = w;
-}
-
+#include "minirt.h"
 
 int main()
 {
-  t_color c1;
-  t_color c2;
-  t_color res;
+  	t_canvas 	*cnv;
+	t_color		red;
+	t_color		pxl;
+	int i;
 
-  c1 = init_color(1, 0.2, 0.4);
-  c2 = init_color(0.9, 1, 0.1);
-  res = color_multi(c1, c2);
-  printf("the res rgb(%f, %f, %f)\n", res.rgb[0], res.rgb[1], res.rgb[2]);
-
+	i = 0;
+	cnv = init_canvas(10, 20);
+	red = init_color(1, 0, 0);
+	write_pixel(cnv, 2, 3, red);
+	pxl = pixel_color(cnv, 2, 3);
+	while(i < 3)
+	  {
+		if (red.rgb[i] != pxl.rgb[i])
+		  printf("unmatch");
+		else
+		  printf("matching\n");
+		i++;
+	  }
 	return (0);
 }
