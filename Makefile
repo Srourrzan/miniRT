@@ -1,9 +1,9 @@
 # !--Makefile--
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -I. -Imatrix -Icolor
-LDFLAGS += -lm
+CFLAGS = -Wall -Wextra -Werror -g
+CPPFLAGS = -I. -Imatrix -Icolor -IMLX42/include
+LDFLAGS = -lmlx42 -lm -ldl -lglfw -pthread -Lbuild
 SRCS += main.c								\
 		info.c								\
 		projectile.c						\
@@ -15,15 +15,20 @@ SRCS += main.c								\
 		matrix/tuple_ops_mutable.c			\
 		matrix/tuple_ops_immutable.c		\
 		matrix/matrix_multiplication.c		
-OBJS=$(SRCS:.c=.o)
+OBJS=$(SRCS:%.c=build/%.o)
 TARGET=miniRT
 
-all: $(TARGET)
+all: MLX42 $(TARGET)
+
+MLX42:
+	cmake -S MLX42 -B build -Wno-dev
+	cmake --build build -j4
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS)
+	$(CC) -o $@ $^ $(LDFLAGS)
 
-%.o: %.c
+build/%.o: %.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 re: fclean all
@@ -37,4 +42,4 @@ fclean: clean
 clean:
 	rm -f $(OBJS)
 
-.PHONY: all re fclean clean
+.PHONY: all re fclean clean MLX42

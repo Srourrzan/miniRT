@@ -1,3 +1,6 @@
 *~*
 *.o
 miniRT
+build/*
+build/*/*
+test.c
