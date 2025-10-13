@@ -5,7 +5,7 @@
 
 typedef struct 	s_color
 {
-  float rgb[3];
+  float rgb[4]; // RGBA
 }				t_color;
 
 typedef struct	s_canvas
