@@ -33,7 +33,7 @@ t_canvas *init_canvas(float width, float height)
 		x = 0;
 		while(x < width)
 		{
-			new->pixels[y][x] = init_color(0, 0, 0);
+		  new->pixels[y][x] = init_color(0, 0, 0, 0);
 			x++;
 		}
 		y++;
