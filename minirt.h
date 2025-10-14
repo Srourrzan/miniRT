@@ -5,13 +5,15 @@
 
 # include "color.h"
 
-# define WIDTH 512
-# define HEIGHT 512
+# define WIDTH 800
+# define HEIGHT 800
 
 typedef struct	s_wndw
 {
   mlx_t			*mlx;
   mlx_image_t	*image;
+  t_env			env;
+  t_prjct		prjct;
 }				t_wndw;
 
 t_wndw	*ft_init_wndw();

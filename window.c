@@ -8,7 +8,7 @@ t_wndw	*ft_init_wndw()
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 
-	wnd = malloc(sizeof(t_wndw));
+	wnd = calloc(1, sizeof(t_wndw));
 	if (!wnd)
 	  	return (NULL);
 	mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
@@ -18,7 +18,7 @@ t_wndw	*ft_init_wndw()
 	  	free(wnd);
 	  	return (NULL);
 	}
-	image = mlx_new_image(mlx, 128, 128);
+	image = mlx_new_image(mlx, HEIGHT, WIDTH);
 	if (!image)
 	{
 	  	mlx_close_window(mlx);
