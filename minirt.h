@@ -4,9 +4,10 @@
 # include <MLX42/MLX42.h>
 
 # include "color.h"
+#include "projectile.h"
 
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 1280
+# define HEIGHT 1024
 
 typedef struct	s_wndw
 {
@@ -17,5 +18,7 @@ typedef struct	s_wndw
 }				t_wndw;
 
 t_wndw	*ft_init_wndw();
+
+void ft_hook(void *param);
 
 #endif

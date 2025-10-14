@@ -1,9 +1,12 @@
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "info.h"
+#include "matrix.h"
 #include "minirt.h"
+#include "projectile.h"
 
 //create ft_puts that prints the passed string to the terminal, use ft_printf
 
@@ -30,38 +33,82 @@ void ft_fill_green(void *param)
 	}
 }
 
+t_prjct new_projectile() //hard_coded
+{
+  	t_prjct projc;
+  	t_tuple	position;
+	t_tuple	velocity;
+
+	position = init_tuple(0, 600, 0, 1);
+	velocity = init_tuple(1, 1.8, 0, 0);
+	velocity = tuple_norm(velocity);
+	velocity = tuple_scale(velocity, 11.25);
+	projc.position = position;
+	projc.velocity = velocity;
+	return (projc);
+}
+
+t_env new_env() //hard_coded
+{
+  t_env		env;
+  t_tuple	gravity;
+  t_tuple	wind;
+
+  gravity = init_tuple(0, -0.1, 0, 0);
+  wind = init_tuple(-0.01, 0, 0, 0);
+  env = init_env(gravity, wind);
+  return (env);
+}
+
 void display_projectile(void *param)
 {
-  
+  	t_wndw	*wnd = param;
+	t_color c;
+	int32_t clr;
+	float	x;
+	float	y;
+
+	c = init_color(0, 0.6, 0.2, 1);
+	clr = color_to_pixel(c);
+	x = wnd->prjct.position.p[0];
+	y = wnd->image->height - wnd->prjct.position.p[1];
+	while ((x < wnd->image->width && x >= 0)
+		   && (y < wnd->image->height && y >= 0))
+	{
+	  printf("(%f, %f)\n", x, y);
+	  	mlx_put_pixel(wnd->image, x, y, clr);
+	  	wnd->prjct = tick(wnd->prjct, wnd->env);
+		x = wnd->prjct.position.p[0];
+		y = wnd->image->height - wnd->prjct.position.p[1];
+	}
 }
 
-void ft_hook(void *param)
+#ifdef MAT
+int32_t main()
 {
-	t_wndw	*wnd = param;
+  t_mat4 mat;
 
-
-	if (mlx_is_key_down(wnd->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(wnd->mlx);
-	if (mlx_is_key_down(wnd->mlx, MLX_KEY_UP))
-	  wnd->image->instances[0].y -= 5;
-	if (mlx_is_key_down(wnd->mlx, MLX_KEY_DOWN))
-	  wnd->image->instances[0].y += 5;
-	if (mlx_is_key_down(wnd->mlx, MLX_KEY_LEFT))
-	  wnd->image->instances[0].x -= 5;
-	if (mlx_is_key_down(wnd->mlx, MLX_KEY_RIGHT))
-	  wnd->image->instances[0].x += 5;
+  memset(&mat, 0, sizeof(mat));
+  printf("MAT has been recieved\n");
+  matrix_viz(mat);
+  mat.r[0] = 1;
+  mat.r[3] = 4;
+  mat.r[4] = 5.5;
+  mat.r[6] = 7.5;
+  printf("-----------------\n");
+  matrix_viz(mat);
+  return (0);
 }
-
+# else
 int32_t main()
 {
 	t_wndw	   *wnd;
-	t_env	   env;
-	t_prjct		prj;
 
 	wnd = ft_init_wndw();
 	if (!wnd)
 	  return (1);
-	env = init_env()
+	wnd->prjct = new_projectile();
+	wnd->env = new_env();
 	if (mlx_image_to_window(wnd->mlx, wnd->image, 0, 0) == -1)
 	{
 		mlx_close_window(wnd->mlx);
@@ -70,7 +117,7 @@ int32_t main()
 		printf("%s\n", mlx_strerror(mlx_errno));
 		return (3);
 	}
-	mlx_loop_hook(wnd->mlx, ft_fill_green, wnd);
+	mlx_loop_hook(wnd->mlx, display_projectile, wnd);
 	mlx_loop_hook(wnd->mlx, ft_hook, wnd);
 	mlx_loop(wnd->mlx);
 	mlx_delete_image(wnd->mlx, wnd->image);
@@ -79,3 +126,4 @@ int32_t main()
 	free(wnd);
 	return (0);
 }
+#endif

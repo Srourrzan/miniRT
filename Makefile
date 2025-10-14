@@ -1,11 +1,12 @@
 # !--Makefile--
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -std=c99
+CFLAGS = -Wall -Wextra -Werror -g #-std=c99
 CPPFLAGS = -I. -Imatrix -Icolor -IMLX42/include
 LDFLAGS = -lmlx42 -lm -ldl -lglfw -pthread -Lbuild
 SRCS += main.c								\
 		info.c								\
+		hooks.c								\
 		window.c							\
 		projectile.c						\
 		color/color.c						\
@@ -20,6 +21,10 @@ SRCS += main.c								\
 OBJS=$(SRCS:%.c=build/%.o)
 TARGET=miniRT
 
+ifeq ($(MAT), 1)
+	CFLAGS += -DMAT
+endif
+
 all: MLX42 $(TARGET)
 
 MLX42:
@@ -31,14 +36,18 @@ $(TARGET): $(OBJS)
 	@$(CC) -o $@ $^ $(LDFLAGS)
 	@echo "miniRT is built"
 
+# mat: $(OBJS)
+# 	$(CC) -DMAT=1 -o $@ $^ $(LDFLAGS)
+
 build/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 re: fclean all
 
-run:
-	@./$(TARGET)
+run: ./$(TARGET)
+	@./$(TARGET) $(ARGS)
+	# echo "$(MAKEDMDGOALS)"
 
 fclean: clean
 	rm -f $(TARGET)
@@ -46,4 +55,4 @@ fclean: clean
 clean:
 	rm -f $(OBJS)
 
-.PHONY: all re fclean clean MLX42
+.PHONY: all re fclean clean MLX42 run
