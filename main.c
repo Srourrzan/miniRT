@@ -85,17 +85,17 @@ void display_projectile(void *param)
 #ifdef MAT
 int32_t main()
 {
-  t_mat3 mat;
+  t_mat2 mat;
 
-  memset(&mat, 0, sizeof(mat));
+  mat = init_mat2();
   printf("MAT has been recieved\n");
-  matrix_viz(mat);
-  mat.r[0] = 1;
-  mat.r[3] = 4;
-  mat.r[4] = 5.5;
-  mat.r[6] = 7.5;
+  mat_info(&mat);
+  mat.m[0][0] = 1;
+  mat.m[0][1] = 4;
+  mat.m[1][1] = 5.5;
+  mat.m[1][0] = 7.5;
   printf("-----------------\n");
-  matrix_viz(mat);
+  mat_info(&mat);
   return (0);
 }
 # else

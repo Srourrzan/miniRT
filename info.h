@@ -3,7 +3,10 @@
 
 #include "matrix.h"
 
-void mat4_info(t_mat4 mat);
-void tuple_info(t_tuple tup);
+void	mat4_info(void *self);
+void	mat3_info(void *self);
+void	mat2_info(void *self);
+void	tuple_info(t_tuple tup);
+void	mat_info(void *_base_mat);
 
 #endif

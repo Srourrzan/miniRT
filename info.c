@@ -10,15 +10,33 @@ void tuple_info(t_tuple tup)
 	printf("point: (%f, %f, %f)\n", tup.p[0], tup.p[1], tup.p[2]);
 }
 
-void mat_info(void _mat)
+void mat_info(void *_base_mat)
 {
-  
+  t_mat *base = (t_mat *)_base_mat;
+  if (base->info)
+	base->info(_base_mat);
 }
 
-void mat4_info(t_mat4 mat)
+void mat4_info(void *self)
 {
-  printf("|%10f|%10f|10%f|%10f|\n", mat.r[0], mat.r[1], mat.r[2], mat.r[3]);
-  printf("|%10f|%10f|10%f|%10f|\n", mat.r[4], mat.r[5], mat.r[6], mat.r[7]);
-  printf("|%10f|%10f|10%f|%10f|\n", mat.r[8], mat.r[9], mat.r[10], mat.r[11]);
-  printf("|%10f|%10f|10%f|%10f|\n", mat.r[12], mat.r[13], mat.r[14], mat.r[15]);
+  t_mat4 *mat = (t_mat4 *)self;
+  printf("|%10f|%10f|%10f|%10f|\n", mat->m[0][0], mat->m[0][1], mat->m[0][2], mat->m[0][3]);
+  printf("|%10f|%10f|%10f|%10f|\n", mat->m[1][0], mat->m[1][1], mat->m[1][2], mat->m[1][3]);
+  printf("|%10f|%10f|%10f|%10f|\n", mat->m[2][0], mat->m[2][1], mat->m[2][2], mat->m[2][3]);
+  printf("|%10f|%10f|%10f|%10f|\n", mat->m[3][0], mat->m[3][1], mat->m[3][2], mat->m[3][3]);
+}
+
+void mat3_info(void *self)
+{
+  t_mat3 *mat = (t_mat3 *)self;
+  printf("|%10f|%10f|%10f|\n", mat->m[0][0], mat->m[0][1], mat->m[0][2]);
+  printf("|%10f|%10f|%10f|\n", mat->m[1][0], mat->m[1][1], mat->m[1][2]);
+  printf("|%10f|%10f|%10f|\n", mat->m[2][0], mat->m[2][1], mat->m[2][2]);
+}
+
+void mat2_info(void *self)
+{
+  t_mat2 *mat = (t_mat2 *)self;
+  printf("|%10f|%10f|\n", mat->m[0][0], mat->m[0][1]);
+  printf("|%10f|%10f|\n", mat->m[1][0], mat->m[1][1]);
 }

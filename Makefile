@@ -14,6 +14,7 @@ SRCS += main.c								\
 		color/color_operations.c			\
 		matrix/math.c						\
 		matrix/tuple.c						\
+		matrix/matrix.c						\
 		matrix/math_utils.c					\
 		matrix/tuple_ops_mutable.c			\
 		matrix/tuple_ops_immutable.c		\

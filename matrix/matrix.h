@@ -15,8 +15,8 @@ typedef struct	s_tuple
 
 typedef struct 	s_mat
 {
-  void (*info)();
-}
+  void (*info)(void *self);
+}				t_mat;
 
 typedef struct 	s_mat4
 {
@@ -52,5 +52,9 @@ t_tuple		init_tuple(float x, float y, float z, float w);
 
 float		tuple_dot_product(t_tuple t1, t_tuple t2);
 int			tuple_cross_product(t_tuple *r_res,t_tuple t1, t_tuple t2);
+
+t_mat4		init_mat4();
+t_mat3		init_mat3();
+t_mat2		init_mat2();
 
 #endif
