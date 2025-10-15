@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "matrix.h"
+#include "info.h"
 
 void tuple_info(t_tuple tup)
 {
@@ -9,7 +10,12 @@ void tuple_info(t_tuple tup)
 	printf("point: (%f, %f, %f)\n", tup.p[0], tup.p[1], tup.p[2]);
 }
 
-void matrix_viz(t_mat4 mat)
+void mat_info(void _mat)
+{
+  
+}
+
+void mat4_info(t_mat4 mat)
 {
   printf("|%10f|%10f|10%f|%10f|\n", mat.r[0], mat.r[1], mat.r[2], mat.r[3]);
   printf("|%10f|%10f|10%f|%10f|\n", mat.r[4], mat.r[5], mat.r[6], mat.r[7]);

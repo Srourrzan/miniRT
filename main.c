@@ -75,7 +75,6 @@ void display_projectile(void *param)
 	while ((x < wnd->image->width && x >= 0)
 		   && (y < wnd->image->height && y >= 0))
 	{
-	  printf("(%f, %f)\n", x, y);
 	  	mlx_put_pixel(wnd->image, x, y, clr);
 	  	wnd->prjct = tick(wnd->prjct, wnd->env);
 		x = wnd->prjct.position.p[0];
@@ -86,7 +85,7 @@ void display_projectile(void *param)
 #ifdef MAT
 int32_t main()
 {
-  t_mat4 mat;
+  t_mat3 mat;
 
   memset(&mat, 0, sizeof(mat));
   printf("MAT has been recieved\n");

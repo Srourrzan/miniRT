@@ -13,19 +13,26 @@ typedef struct	s_tuple
   void	(*set_data)(); //will create later, to create one for all math types
 }				t_tuple;
 
+typedef struct 	s_mat
+{
+  void (*info)();
+}
+
 typedef struct 	s_mat4
 {
-  float r[16];
+  t_mat	mat;
   float m[4][4];
 }				t_mat4;
 
 typedef struct	s_mat3
 {
+  t_mat	mat;
   float m[3][3];
 }				t_mat3;
 
 typedef struct	s_mat2
 {
+  t_mat	mat;
   float m[2][2];
 }				t_mat2;
 
@@ -45,7 +52,5 @@ t_tuple		init_tuple(float x, float y, float z, float w);
 
 float		tuple_dot_product(t_tuple t1, t_tuple t2);
 int			tuple_cross_product(t_tuple *r_res,t_tuple t1, t_tuple t2);
-
-void 		matrix_viz(t_mat4 mat);
 
 #endif
