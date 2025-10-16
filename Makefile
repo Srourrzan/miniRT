@@ -14,10 +14,11 @@ SRCS += main.c								\
 		color/color_operations.c			\
 		matrix/math.c						\
 		matrix/tuple.c						\
-		matrix/matrix.c						\
 		matrix/math_utils.c					\
+		matrix/matrix_comparison.c			\
 		matrix/tuple_ops_mutable.c			\
 		matrix/tuple_ops_immutable.c		\
+		matrix/matrix_initialization.c		\
 		matrix/matrix_multiplication.c		
 OBJS=$(SRCS:%.c=build/%.o)
 TARGET=miniRT
@@ -37,9 +38,6 @@ $(TARGET): $(OBJS)
 	@$(CC) -o $@ $^ $(LDFLAGS)
 	@echo "miniRT is built"
 
-# mat: $(OBJS)
-# 	$(CC) -DMAT=1 -o $@ $^ $(LDFLAGS)
-
 build/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -48,7 +46,6 @@ re: fclean all
 
 run: ./$(TARGET)
 	@./$(TARGET) $(ARGS)
-	# echo "$(MAKEDMDGOALS)"
 
 fclean: clean
 	rm -f $(TARGET)

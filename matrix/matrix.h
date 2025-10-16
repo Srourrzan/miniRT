@@ -1,6 +1,8 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 
+# include <MLX42/MLX42.h>
+
 # define NAME_SIZE 32
 
 
@@ -56,5 +58,7 @@ int			tuple_cross_product(t_tuple *r_res,t_tuple t1, t_tuple t2);
 t_mat4		init_mat4();
 t_mat3		init_mat3();
 t_mat2		init_mat2();
+
+int32_t		mat4_equality(t_mat4 *r_m1, t_mat4 *r_m2);
 
 #endif
