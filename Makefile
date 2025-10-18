@@ -16,7 +16,9 @@ SRCS += main.c								\
 		matrix/tuple.c						\
 		matrix/math_utils.c					\
 		matrix/matrix_comparison.c			\
+		matrix/matrix_operations.c			\
 		matrix/tuple_ops_mutable.c			\
+		matrix/matrix_determinant.c			\
 		matrix/tuple_ops_immutable.c		\
 		matrix/matrix_initialization.c		\
 		matrix/matrix_multiplication.c		

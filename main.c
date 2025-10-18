@@ -84,60 +84,59 @@ void display_projectile(void *param)
 
 void fill_mat4(t_mat4 *r_mat)
 {
-  r_mat->m[0][0] = 1;
-  r_mat->m[0][1] = 2;
+  r_mat->m[0][0] = 0;
+  r_mat->m[0][1] = 9;
   r_mat->m[0][2] = 3;
-  r_mat->m[0][3] = 4;
-  r_mat->m[1][0] = 5;
-  r_mat->m[1][1] = 6;
-  r_mat->m[1][2] = 7;
+  r_mat->m[0][3] = 0;
+  
+  r_mat->m[1][0] = 9;
+  r_mat->m[1][1] = 8;
+  r_mat->m[1][2] = 0;
   r_mat->m[1][3] = 8;
-  r_mat->m[2][0] = 9;
+  
+  r_mat->m[2][0] = 1;
   r_mat->m[2][1] = 8;
-  r_mat->m[2][2] = 7;
-  r_mat->m[2][3] = 6;
-  r_mat->m[3][0] = 5;
-  r_mat->m[3][1] = 4;
-  r_mat->m[3][2] = 3;
-  r_mat->m[3][3] = 2;
+  r_mat->m[2][2] = 5;
+  r_mat->m[2][3] = 3;
+  
+  r_mat->m[3][0] = 0;
+  r_mat->m[3][1] = 0;
+  r_mat->m[3][2] = 5;
+  r_mat->m[3][3] = 8;
 }
 
-void fill_mat4_(t_mat4 *r_mat)
+void fill_mat2_(t_mat2 *r_mat)
 {
-  r_mat->m[0][0] = -2;
-  r_mat->m[0][1] = 1;
-  r_mat->m[0][2] = 2;
-  r_mat->m[0][3] = 3;
-  r_mat->m[1][0] = 3;
+  r_mat->m[0][0] = 1;
+  r_mat->m[0][1] = 5;
+  r_mat->m[1][0] = -3;
   r_mat->m[1][1] = 2;
-  r_mat->m[1][2] = 1;
-  r_mat->m[1][3] = -1;
-  r_mat->m[2][0] = 4;
-  r_mat->m[2][1] = 3;
-  r_mat->m[2][2] = 6;
-  r_mat->m[2][3] = 5;
-  r_mat->m[3][0] = 1;
-  r_mat->m[3][1] = 2;
-  r_mat->m[3][2] = 7;
-  r_mat->m[3][3] = 8;
+  /* r_mat->m[1][0] = 3; */
+  /* r_mat->m[1][1] = 2; */
+  /* r_mat->m[1][2] = 1; */
+  /* r_mat->m[1][3] = -1; */
+  /* r_mat->m[2][0] = 4; */
+  /* r_mat->m[2][1] = 3; */
+  /* r_mat->m[2][2] = 6; */
+  /* r_mat->m[2][3] = 5; */
+  /* r_mat->m[3][0] = 1; */
+  /* r_mat->m[3][1] = 2; */
+  /* r_mat->m[3][2] = 7; */
+  /* r_mat->m[3][3] = 8; */
 }
 
 #ifdef MAT
 int32_t main()
 {
-  t_mat4 mat1;
-  t_mat4 mat2;
-  t_mat4 res;
+	t_mat2 mat1;
+	float res;
 
-  mat1 = init_mat4();
-  mat2 = init_mat4();
-  res = init_mat4();
-  fill_mat4(&mat1); 
-  fill_mat4_(&mat2);
-  mat4_multiplicaton(&res, &mat1, &mat2);
-  printf("|%f|%f|%f|%f|\n", res.m[0][0], res.m[0][1], res.m[0][2], res.m[0][3]);
-  printf("|%f|%f|%f|%f|\n", res.m[1][0], res.m[1][1], res.m[1][2], res.m[1][3]);
-  return (0);
+	mat1 = init_mat2();
+	fill_mat2_(&mat1);
+	mat_info(&mat1);
+	res = mat_det(&mat1);
+	printf("det = %f\n", res);
+	return (0);
 }
 # else
 int32_t main()

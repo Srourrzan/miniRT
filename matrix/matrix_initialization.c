@@ -15,6 +15,7 @@ t_mat4 init_mat4()
 t_mat3 init_mat3()
 {
   t_mat3 new;
+  
   memset(&new, 0, sizeof(new));
   new.mat.info = mat3_info;
   return (new);
@@ -23,7 +24,21 @@ t_mat3 init_mat3()
 t_mat2 init_mat2()
 {
   t_mat2 new;
+  
   memset(&new, 0, sizeof(new));
   new.mat.info = mat2_info;
+  new.mat.det = mat2_det;
+  return (new);
+}
+
+t_mat4 iden_mat4()
+{
+  t_mat4 new;
+
+  new = init_mat4();
+  new.m[0][0] = 1;
+  new.m[1][1] = 1;
+  new.m[2][2] = 1;
+  new.m[3][3] = 1;
   return (new);
 }
