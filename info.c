@@ -35,6 +35,7 @@ void mat3_info(void *self)
   t_mat3 *mat;
 
   mat = (t_mat3 *)self;
+  //printf("%s: m[0][0] =  %f\n", __func__, mat->m[0][0]);
   printf("|%10f|%10f|%10f|\n", mat->m[0][0], mat->m[0][1], mat->m[0][2]);
   printf("|%10f|%10f|%10f|\n", mat->m[1][0], mat->m[1][1], mat->m[1][2]);
   printf("|%10f|%10f|%10f|\n", mat->m[2][0], mat->m[2][1], mat->m[2][2]);

@@ -9,6 +9,10 @@ t_mat4 init_mat4()
 
   memset(&new, 0, sizeof(new));
   new.mat.info = mat4_info;
+  new.mat.det = NULL;
+  new.mat.sub_mat = mat4_submat;
+  new.mat.minor = NULL;
+  new.mat.cofactor = NULL;
   return (new);
 }
 
@@ -18,6 +22,10 @@ t_mat3 init_mat3()
   
   memset(&new, 0, sizeof(new));
   new.mat.info = mat3_info;
+  new.mat.det = mat3_det;
+  new.mat.sub_mat = mat3_submat;
+  new.mat.minor = mat3_minor;
+  new.mat.cofactor = mat3_cofactor;
   return (new);
 }
 
@@ -28,6 +36,9 @@ t_mat2 init_mat2()
   memset(&new, 0, sizeof(new));
   new.mat.info = mat2_info;
   new.mat.det = mat2_det;
+  new.mat.sub_mat = NULL;
+  new.mat.minor = NULL;
+  new.mat.cofactor = NULL;
   return (new);
 }
 

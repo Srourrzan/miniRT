@@ -17,8 +17,11 @@ typedef struct	s_tuple
 
 typedef struct 	s_mat
 {
-  void (*info)(void *self);
-  float (*det)(void *self);
+  void	(*info)(void *self);
+  float	(*det)(void *self);
+  void	(*sub_mat)(void *self, void *sub_mat, int row, int col);
+  float	(*minor)(void *self, void *sub_mat, int row, int col);
+  float (*cofactor)(void *self, void *sub_mat, int row, int col);
   // if we needed comparing equality for mat3 or mat2 then we will define one here
 }				t_mat;
 
@@ -69,5 +72,16 @@ void		set_mat_transpose(t_mat4 *trans, t_mat4 *m);
 
 float		mat_det(void *_base_mat);
 float		mat2_det(void *self);
+float		mat3_det(void *self);
+
+void		ft_sub_mat(void *_base_mat, void *sub_mat, int row, int col);
+void		mat4_submat(void *self, void *sub_mat, int row, int col);
+void		mat3_submat(void *self, void *sub_mat, int row, int col);
+
+float		mat_minor(void *_base_mat, void *sub_mat, int row, int col);
+float		mat3_minor(void *self, void *sub_mat, int row, int col);
+
+float		mat_cofactor(void *_base_mat, void *sub_mat, int row, int col);
+float		mat3_cofactor(void *self, void *sub_mat, int row, int col);
 
 #endif
