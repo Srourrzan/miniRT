@@ -9,10 +9,10 @@ t_mat4 init_mat4()
 
   memset(&new, 0, sizeof(new));
   new.mat.info = mat4_info;
-  new.mat.det = NULL;
+  new.mat.det = mat4_det;
   new.mat.sub_mat = mat4_submat;
-  new.mat.minor = NULL;
-  new.mat.cofactor = NULL;
+  new.mat.minor = mat4_minor;
+  new.mat.cofactor = mat4_cofactor;
   return (new);
 }
 

@@ -12,6 +12,17 @@ float mat_minor(void *_base_mat, void *sub_mat, int row, int col)
   return (minorf);
 }
 
+float mat4_minor(void *self, void *sub_mat, int row, int col)
+{
+  float minor;
+
+  (void)self;
+  (void)row;
+  (void)col;
+  minor = mat_det(sub_mat);
+  return (minor);
+}
+
 float mat3_minor(void *self, void *sub_mat, int row, int col)
 {
   float det;

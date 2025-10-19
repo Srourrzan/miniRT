@@ -13,6 +13,19 @@ float mat_cofactor(void *_base_mat, void *sub_mat, int row, int col)
   return (cofactor);
 }
 
+float mat4_cofactor(void *self, void *sub_mat, int row, int col)
+{
+  float cofactor;
+  float minor;
+
+  minor = mat_minor(self, sub_mat, row, col);
+  if ((row + col) % 2 == 0)
+	cofactor = minor;
+  else
+	cofactor = -1 * minor;
+  return (cofactor);
+}
+
 float mat3_cofactor(void *self, void *sub_mat, int row, int col)
 {
   float cofactor;

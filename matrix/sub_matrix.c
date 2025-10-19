@@ -70,7 +70,6 @@ void	mat3_submat(void *self, void *sub_mat, int row, int col)
 			  j++;
 			  continue;
 			}
-		  printf("mat[%i][%i] = %f\n", i, j, mat->m[i][j]);
 		  submat->m[k][l] = mat->m[i][j];
 		  j++;
 		  l++;

@@ -84,25 +84,25 @@ void display_projectile(void *param)
 
 void fill_mat4(t_mat4 *r_mat)
 {
-  r_mat->m[0][0] = -6;
-  r_mat->m[0][1] = 1;
-  r_mat->m[0][2] = 1;
-  r_mat->m[0][3] = 6;
+  r_mat->m[0][0] = -2;
+  r_mat->m[0][1] = -8;
+  r_mat->m[0][2] = 3;
+  r_mat->m[0][3] = 5;
   
-  r_mat->m[1][0] = -8;
-  r_mat->m[1][1] = 5;
-  r_mat->m[1][2] = 8;
-  r_mat->m[1][3] = 6;
+  r_mat->m[1][0] = -3;
+  r_mat->m[1][1] = 1;
+  r_mat->m[1][2] = 7;
+  r_mat->m[1][3] = 3;
   
-  r_mat->m[2][0] = -1;
-  r_mat->m[2][1] = 0;
-  r_mat->m[2][2] = 8;
-  r_mat->m[2][3] = 2;
+  r_mat->m[2][0] = 1;
+  r_mat->m[2][1] = 2;
+  r_mat->m[2][2] = -9;
+  r_mat->m[2][3] = 6;
   
-  r_mat->m[3][0] = -7;
-  r_mat->m[3][1] = 1;
-  r_mat->m[3][2] = -1;
-  r_mat->m[3][3] = 1;
+  r_mat->m[3][0] = -6;
+  r_mat->m[3][1] = 7;
+  r_mat->m[3][2] = 7;
+  r_mat->m[3][3] = -9;
 }
 
 void fill_mat3(t_mat3 *r_mat)
@@ -123,11 +123,11 @@ void fill_mat3(t_mat3 *r_mat)
 #ifdef MAT
 int32_t main()
 {
-	t_mat3 mat1;
+	t_mat4 mat1;
 	float det;
 
-	mat1 = init_mat3();
-	fill_mat3(&mat1);
+	mat1 = init_mat4();
+	fill_mat4(&mat1);
 	mat_info(&mat1);
 	det = mat_det(&mat1);
 	printf("determinant = %f\n", det);
