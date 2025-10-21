@@ -94,4 +94,7 @@ float		mat_cofactor(void *_base_mat, void *sub_mat, int row, int col);
 int			inverse_mat(void *base_mat, void *inv_mat);
 int			mat4_inverse(void *self, void *inv_mat);
 
+t_mat4		mat_translation(float x, float y, float z);
+t_mat4		mat_scale(float x, float y, float z);
+
 #endif

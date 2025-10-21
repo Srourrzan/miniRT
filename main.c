@@ -131,58 +131,23 @@ void fill_mat4_(t_mat4 *r_mat)
 #ifdef MAT
 int32_t main()
 {
-	t_mat4 a;
-	t_mat4 transa;
-	t_mat4 inva;
-	t_mat4 invb;
-	t_mat4 transb;
+  t_mat4 transform;
+  /* t_mat4 inv; */
+  t_tuple t;
+  t_tuple new_t;
 
-	a = iden_mat4();
-	inva = init_mat4();
-	transa = init_mat4();
-	invb = init_mat4();
-	transb = init_mat4();
-	fill_mat4(&a);
-	printf("a:\n");
-	mat_info(&a);
-	set_mat_transpose(&transa, &a);
-	printf("trans:\n");
-	mat_info(&transa);
-	if (mat_isinvertable(&transa) == 1)
-    	inverse_mat(&transa, &inva);
-	else
-	  {
-		printf("trasa is no invertable");
-		return (0);
-	  }
-	printf("inverse:\n");
-	mat_info(&inva);
-	//==============================================
-	printf("a:\n");
-	mat_info(&a);
-	printf("a is invertable = %d\n", a.mat.is_invertable);
-	if (mat_isinvertable(&a) == 1)
-	  {
-		printf("a is invertable = %d\n", a.mat.is_invertable);	
-    	inverse_mat(&a, &invb);
-	  }
-	else
-	  {
-		printf("a is no invertable");
-		return (0);
-	  }
-	printf("inverse:\n");
-	mat_info(&invb);
-	set_mat_transpose(&transb, &invb);
-	printf("transb:\n");
-	mat_info(&transb);
-	//mat4_multiplication(&b, &a, &inva);
-	/* printf("mat b:\n"); */
-	/* mat_info(&b); */
-	if (mat4_equality(&inva, &invb))
-	  printf("transpose of an inverse is equal to the inverse of a transpose\n");
-	else
-	  printf("transpose of an inverse is not equal to the inverse of a transpose\n");
+  t = init_tuple(2, 3, 4, 1);
+  transform = mat_scale(-1, 1, 1);
+  /* inv = init_mat4(); */
+  /* if (mat_isinvertable(&transform)) */
+  /* 	{ */
+  /* 		inverse_mat(&transform, &inv); */
+  /* 		mat_info(&inv); */
+  /* 		new_t = mat4_multi_tuple(&inv, &t); */
+  /* 		tuple_info(new_t); */
+  /* 	} */
+  new_t = mat4_multi_tuple(&transform, &t);
+  tuple_info(new_t);
 	return (0);
 }
 # else
@@ -209,6 +174,6 @@ int32_t main()
 	mlx_close_window(wnd->mlx);
 	mlx_terminate(wnd->mlx);
 	free(wnd);
-	return (0);;
+	return (0);
 }
 #endif

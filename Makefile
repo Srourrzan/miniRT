@@ -25,6 +25,7 @@ SRCS += main.c								\
 		matrix/tuple_ops_mutable.c			\
 		matrix/matrix_determinant.c			\
 		matrix/tuple_ops_immutable.c		\
+		matrix/matrix_transformation.c		\
 		matrix/matrix_initialization.c		\
 		matrix/matrix_multiplication.c		
 OBJS=$(SRCS:%.c=build/%.o)
