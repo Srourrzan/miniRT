@@ -56,7 +56,6 @@ void	mat3_submat(void *self, void *sub_mat, int row, int col)
 
   mat = (t_mat3 *)self;
   submat = (t_mat2 *)sub_mat;
-  mat_info(mat);
   i = 0;
   k = 0;
   while (i < 3)

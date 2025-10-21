@@ -22,11 +22,12 @@ float mat4_det(void *self)
 
   j = 0;
   det = 0;
-  submat = init_mat3();
   mat = (t_mat4 *)self;
   while (j < 4)
   {
-	det += mat->m[0][j] * mat_cofactor(self, &submat, 0, j);
+	submat = init_mat3();
+	ft_sub_mat(mat, &submat, 0, j);
+	det += mat->m[0][j] * mat_cofactor(mat, &submat, 0, j);
 	j++;
   }
   return (det);

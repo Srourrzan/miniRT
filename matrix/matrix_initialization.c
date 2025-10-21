@@ -8,11 +8,13 @@ t_mat4 init_mat4()
   t_mat4 new;
 
   memset(&new, 0, sizeof(new));
-  new.mat.info = mat4_info;
   new.mat.det = mat4_det;
-  new.mat.sub_mat = mat4_submat;
+  new.mat.info = mat4_info;
+  new.mat.is_invertable = 0;
   new.mat.minor = mat4_minor;
+  new.mat.sub_mat = mat4_submat;
   new.mat.cofactor = mat4_cofactor;
+  new.mat.inverse = mat4_inverse;
   return (new);
 }
 
@@ -21,10 +23,11 @@ t_mat3 init_mat3()
   t_mat3 new;
   
   memset(&new, 0, sizeof(new));
-  new.mat.info = mat3_info;
   new.mat.det = mat3_det;
-  new.mat.sub_mat = mat3_submat;
+  new.mat.info = mat3_info;
+  new.mat.is_invertable = 0;
   new.mat.minor = mat3_minor;
+  new.mat.sub_mat = mat3_submat;
   new.mat.cofactor = mat3_cofactor;
   return (new);
 }
@@ -34,11 +37,12 @@ t_mat2 init_mat2()
   t_mat2 new;
   
   memset(&new, 0, sizeof(new));
-  new.mat.info = mat2_info;
+  new.mat.minor = NULL;
   new.mat.det = mat2_det;
   new.mat.sub_mat = NULL;
-  new.mat.minor = NULL;
   new.mat.cofactor = NULL;
+  new.mat.info = mat2_info;
+  new.mat.is_invertable = 0;;
   return (new);
 }
 

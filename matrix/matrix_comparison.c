@@ -1,4 +1,6 @@
 #include "matrix.h"
+#include "ext_math.h"
+#include <stdio.h>
 #include <MLX42/MLX42.h>
 
 // can we use polymorphism for these functions?
@@ -14,8 +16,11 @@ int32_t mat4_equality(t_mat4 *r_m1, t_mat4 *r_m2)
 	  j = 0;
 	  while (j < 4)
 		{
-		  if (r_m1->m[i][j] != r_m2->m[i][j])
-			return (0);
+		  if (!ft_float_equal(r_m1->m[i][j], r_m2->m[i][j]))
+			{
+			  printf("r_m1->m[%d][%d] (%f) != r_m2->m[%d][%d (%f)]\n", i, j, r_m1->m[i][j], i, j,  r_m2->m[i][j]);
+			  return (0);
+			}
 		  j++;
 		}
 	  i++;

@@ -16,8 +16,10 @@ SRCS += main.c								\
 		matrix/tuple.c						\
 		matrix/sub_matrix.c					\
 		matrix/math_utils.c					\
+		matrix/matrix_utils.c				\
 		matrix/minor_matrix.c				\
 		matrix/matrix_cofactor.c			\
+		matrix/matrix_invertion.c			\
 		matrix/matrix_comparison.c			\
 		matrix/matrix_operations.c			\
 		matrix/tuple_ops_mutable.c			\

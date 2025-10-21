@@ -10,18 +10,21 @@ typedef struct	s_tuple
 {
   //
   char		name[NAME_SIZE];
-  float	p[4];
-  int is_vect;
-  void	(*set_data)(); //will create later, to create one for all math types
+  float		p[4];
+  int		is_vect;
+  void		(*set_data)(); //will create later, to create one for all math types
 }				t_tuple;
 
 typedef struct 	s_mat
 {
-  void	(*info)(void *self);
   float	(*det)(void *self);
-  void	(*sub_mat)(void *self, void *sub_mat, int row, int col);
+  void	(*info)(void *self);
+  int	(*inverse)(void *self, void *inv_mat);
   float	(*minor)(void *self, void *sub_mat, int row, int col);
+  void	(*sub_mat)(void *self, void *sub_mat, int row, int col);
   float (*cofactor)(void *self, void *sub_mat, int row, int col);
+  int	is_invertable;
+  float	det_value;
   // if we needed comparing equality for mat3 or mat2 then we will define one here
 }				t_mat;
 
@@ -62,29 +65,33 @@ t_tuple		mat4_multi_tuple(t_mat4 *m, t_tuple *tup);
 int			tuple_cross_product(t_tuple *r_res,t_tuple t1, t_tuple t2);
 void		mat4_multiplication(t_mat4 *res, t_mat4 *m1_r, t_mat4 *m2_r);
 
-t_mat4		init_mat4();
-t_mat4		iden_mat4();
-t_mat3		init_mat3();
-t_mat2		init_mat2();
+t_mat4		init_mat4(void);
+t_mat4		iden_mat4(void);
+t_mat3		init_mat3(void);
+t_mat2		init_mat2(void);
 
+int			mat_isinvertable(void *mat);
 int32_t		mat4_equality(t_mat4 *r_m1, t_mat4 *r_m2);
 void		set_mat_transpose(t_mat4 *trans, t_mat4 *m);
 
-float		mat_det(void *_base_mat);
 float		mat2_det(void *self);
 float		mat3_det(void *self);
 float		mat4_det(void *self);
+float		mat_det(void *_base_mat);
 
-void		ft_sub_mat(void *_base_mat, void *sub_mat, int row, int col);
 void		mat4_submat(void *self, void *sub_mat, int row, int col);
 void		mat3_submat(void *self, void *sub_mat, int row, int col);
+void		ft_sub_mat(void *_base_mat, void *sub_mat, int row, int col);
 
-float		mat_minor(void *_base_mat, void *sub_mat, int row, int col);
 float		mat3_minor(void *self, void *sub_mat, int row, int col);
 float		mat4_minor(void *self, void *sub_mat, int row, int col);
+float		mat_minor(void *_base_mat, void *sub_mat, int row, int col);
 
-float		mat_cofactor(void *_base_mat, void *sub_mat, int row, int col);
 float		mat3_cofactor(void *self, void *sub_mat, int row, int col);
 float		mat4_cofactor(void *self, void *sub_mat, int row, int col);
+float		mat_cofactor(void *_base_mat, void *sub_mat, int row, int col);
+
+int			inverse_mat(void *base_mat, void *inv_mat);
+int			mat4_inverse(void *self, void *inv_mat);
 
 #endif
