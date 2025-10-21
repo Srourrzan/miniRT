@@ -160,9 +160,12 @@ int32_t main()
 	//==============================================
 	printf("a:\n");
 	mat_info(&a);
-	//	printf("a is invertable = %d\n", )
+	printf("a is invertable = %d\n", a.mat.is_invertable);
 	if (mat_isinvertable(&a) == 1)
-    	inverse_mat(&invb, &a);
+	  {
+		printf("a is invertable = %d\n", a.mat.is_invertable);	
+    	inverse_mat(&a, &invb);
+	  }
 	else
 	  {
 		printf("a is no invertable");
@@ -176,6 +179,10 @@ int32_t main()
 	//mat4_multiplication(&b, &a, &inva);
 	/* printf("mat b:\n"); */
 	/* mat_info(&b); */
+	if (mat4_equality(&inva, &invb))
+	  printf("transpose of an inverse is equal to the inverse of a transpose\n");
+	else
+	  printf("transpose of an inverse is not equal to the inverse of a transpose\n");
 	return (0);
 }
 # else
